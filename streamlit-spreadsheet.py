@@ -15,12 +15,28 @@ aws_region = st.secrets["aws"]["AWS_REGION"]
 openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
 # openai.api_key = os.getenv("OPENAI_API_KEY")
 
-bedrock = boto3.client(
-    service_name='bedrock-runtime',
-    region_name=aws_region,
+
+session = boto3.Session(
     aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_key
+    aws_secret_access_key=aws_secret_key,
+    region_name=aws_region
 )
+
+# Create the Bedrock client using the session
+bedrock = session.client('bedrock-runtime')
+
+
+
+
+
+
+
+# bedrock = boto3.client(
+#     service_name='bedrock-runtime',
+#     region_name=aws_region,
+#     aws_access_key_id=aws_access_key,
+#     aws_secret_access_key=aws_secret_key
+# )
 
 
 class CustomBedrockEmbeddings(BedrockEmbeddings):
