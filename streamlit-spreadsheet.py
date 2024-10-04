@@ -12,7 +12,7 @@ aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
 aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
 aws_region = st.secrets["AWS_REGION"]
 # load_dotenv()
-openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 # openai.api_key = os.getenv("OPENAI_API_KEY")
 
 st.write(aws_access_key)
