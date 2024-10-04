@@ -209,7 +209,6 @@
 
 
 
-
 import os
 import json
 import streamlit as st
@@ -226,18 +225,17 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 # Function to embed queries and documents using sentence-transformers
 class TransformerEmbeddings:
     def embed_documents(self, texts):
-        return self.embed_query(texts)
+        return model.encode(texts, show_progress_bar=True)
 
-    def embed_query(self, texts):
-        embeddings = model.encode(texts, show_progress_bar=True)
-        return embeddings
+    def embed_query(self, text):
+        return model.encode([text], show_progress_bar=False)[0]
 
 
+# Load FAISS index with transformer embeddings
 faiss_index_path = 'spreadsheet-index-1'
 embeddings = TransformerEmbeddings()
 
-# Load FAISS index using transformer embeddings
-vectorstore = FAISS.load_local(faiss_index_path, embeddings, allow_dangerous_deserialization=True)
+vectorstore = FAISS.load_local(faiss_index_path, embeddings.embed_documents, allow_dangerous_deserialization=True)
 response_cache = {}
 
 # Function to retrieve documents from FAISS index
@@ -364,19 +362,3 @@ if st.button("Submit"):
     docs = retrieve_documents(query)
     res = generate_response(query, docs)
     st.write(res)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
