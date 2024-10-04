@@ -8,35 +8,25 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import BedrockEmbeddings
 
 # from sklearn.metrics.pairwise import cosine_similarity
-aws_access_key = st.secrets["aws"]["AWS_ACCESS_KEY_ID"]
-aws_secret_key = st.secrets["aws"]["AWS_SECRET_ACCESS_KEY"]
-aws_region = st.secrets["aws"]["AWS_REGION"]
+aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
+aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+aws_region = st.secrets["AWS_REGION"]
 # load_dotenv()
 openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
 # openai.api_key = os.getenv("OPENAI_API_KEY")
 
+st.write(aws_access_key)
+st.write(aws_secret_key)
+st.write(aws_region)
 
-session = boto3.Session(
+
+
+bedrock = boto3.client(
+    service_name='bedrock-runtime',
+    region_name=aws_region,
     aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_key,
-    region_name=aws_region
+    aws_secret_access_key=aws_secret_key
 )
-
-# Create the Bedrock client using the session
-bedrock = session.client('bedrock-runtime')
-
-
-
-
-
-
-
-# bedrock = boto3.client(
-#     service_name='bedrock-runtime',
-#     region_name=aws_region,
-#     aws_access_key_id=aws_access_key,
-#     aws_secret_access_key=aws_secret_key
-# )
 
 
 class CustomBedrockEmbeddings(BedrockEmbeddings):
