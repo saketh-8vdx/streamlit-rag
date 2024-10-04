@@ -8,14 +8,14 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import BedrockEmbeddings
 
 # from sklearn.metrics.pairwise import cosine_similarity
-# aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
-# aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
-# aws_region = st.secrets["AWS_REGION"]
-load_dotenv()
-# openai.api_key = st.secrets["OPENAI_API_KEY"]
-openai.api_key = os.getenv("OPENAI_API_KEY")
-aws_access_key=os.getenv("AWS_ACCESS_KEY_ID")
-aws_secret_key=os.getenv("AWS_SECRET_ACCESS_KEY")
+aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
+aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+aws_region = st.secrets["AWS_REGION"]
+# load_dotenv()
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+# aws_access_key=os.getenv("AWS_ACCESS_KEY_ID")
+# aws_secret_key=os.getenv("AWS_SECRET_ACCESS_KEY")
 
 st.write(aws_access_key)
 st.write(aws_secret_key)
@@ -23,13 +23,23 @@ st.write(aws_secret_key)
 
 
 
-bedrock = boto3.client(
-    'bedrock-runtime',
-    # service_name='bedrock-runtime',
-    region_name = "us-east-1",
+
+session = boto3.Session(
     aws_access_key_id=aws_access_key,
-    aws_secret_access_key=aws_secret_key
+    aws_secret_access_key=aws_secret_key,
+    region_name=aws_region
 )
+
+
+bedrock = session.client(service_name='bedrock-runtime')
+
+# bedrock = boto3.client(
+#     'bedrock-runtime',
+#     # service_name='bedrock-runtime',
+#     region_name = "us-east-1",
+#     aws_access_key_id=aws_access_key,
+#     aws_secret_access_key=aws_secret_key
+# )
 
 
 class CustomBedrockEmbeddings(BedrockEmbeddings):
