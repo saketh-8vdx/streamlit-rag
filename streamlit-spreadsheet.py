@@ -17,7 +17,7 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.write(aws_access_key)
 st.write(aws_secret_key)
-st.write(aws_region)
+# st.write(aws_region)
 
 
 
