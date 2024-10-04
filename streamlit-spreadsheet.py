@@ -3,7 +3,7 @@ import json
 import streamlit as st
 import openai
 import boto3
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from langchain.vectorstores import FAISS
 from langchain.embeddings import BedrockEmbeddings
 
