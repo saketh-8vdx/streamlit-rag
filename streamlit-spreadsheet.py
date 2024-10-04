@@ -8,12 +8,14 @@ from langchain.vectorstores import FAISS
 from langchain.embeddings import BedrockEmbeddings
 
 # from sklearn.metrics.pairwise import cosine_similarity
-aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
-aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+# aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
+# aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
 # aws_region = st.secrets["AWS_REGION"]
-# load_dotenv()
-openai.api_key = st.secrets["OPENAI_API_KEY"]
-# openai.api_key = os.getenv("OPENAI_API_KEY")
+load_dotenv()
+# openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = os.getenv("OPENAI_API_KEY")
+aws_access_key=os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_key=os.getenv("AWS_SECRET_ACCESS_KEY")
 
 st.write(aws_access_key)
 st.write(aws_secret_key)
