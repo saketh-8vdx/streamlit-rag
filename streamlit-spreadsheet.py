@@ -354,6 +354,7 @@ def generate_response(query, documents):
 
     except Exception as e:
         print(f"Error generating response: {e}")
+        return "diwali"
 
 # Streamlit app UI
 st.title("Financial Document Analyzer")
