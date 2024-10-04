@@ -11,9 +11,9 @@ from langchain.embeddings import BedrockEmbeddings
 aws_access_key = st.secrets["aws"]["AWS_ACCESS_KEY_ID"]
 aws_secret_key = st.secrets["aws"]["AWS_SECRET_ACCESS_KEY"]
 aws_region = st.secrets["aws"]["AWS_REGION"]
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+openai.api_key = st.secrets["openai"]["OPENAI_API_KEY"]
+# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 bedrock = boto3.client(
     service_name='bedrock-runtime',
