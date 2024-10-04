@@ -5,6 +5,7 @@ import openai
 import boto3
 from dotenv import load_dotenv
 from langchain.vectorstores import FAISS
+from langchain.embeddings import BedrockEmbeddings
 
 # from sklearn.metrics.pairwise import cosine_similarity
 
