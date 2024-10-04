@@ -10,7 +10,7 @@ from langchain.embeddings import BedrockEmbeddings
 # from sklearn.metrics.pairwise import cosine_similarity
 aws_access_key = st.secrets["AWS_ACCESS_KEY_ID"]
 aws_secret_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
-aws_region = st.secrets["AWS_REGION"]
+# aws_region = st.secrets["AWS_REGION"]
 # load_dotenv()
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 # openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -23,7 +23,7 @@ st.write(aws_region)
 
 bedrock = boto3.client(
     service_name='bedrock-runtime',
-    region_name=aws_region,
+    region_name='us-east-1',
     aws_access_key_id=aws_access_key,
     aws_secret_access_key=aws_secret_key
 )
