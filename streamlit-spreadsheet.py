@@ -34,8 +34,8 @@ st.write(aws_secret_key)
 # bedrock = session.client(service_name='bedrock-runtime',region_name=aws_region)
 
 bedrock = boto3.client(
-    'bedrock-runtime',
-    # service_name='bedrock-runtime',
+    # 'bedrock-runtime',
+    service_name='bedrock-runtime',
     region_name = "us-east-1"
     # aws_access_key_id=aws_access_key,
     # aws_secret_access_key=aws_secret_key
